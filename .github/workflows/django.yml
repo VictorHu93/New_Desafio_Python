@@ -9,10 +9,11 @@ jobs:
     services:
       db:
         image: postgres:13
-        environment:
+        # Usando 'env' ao invés de 'environment'
+        env:
           POSTGRES_USER: myuser
           POSTGRES_PASSWORD: mypassword
-          POSTGRES_DB: mydatabase  # Nome correto do banco
+          POSTGRES_DB: mydatabase
         options: >-
           --health-cmd="pg_isready -U myuser -d mydatabase -h localhost"
           --health-interval=10s
@@ -48,3 +49,4 @@ jobs:
       - name: Run tests
         run: |
           python manage.py test
+
